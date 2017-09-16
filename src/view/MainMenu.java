@@ -4,6 +4,9 @@ import javafx.geometry.Pos;
 import javafx.scene.effect.InnerShadow;
 
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -22,7 +25,7 @@ public class MainMenu extends StdScene {
     public void init() {
         super.init();
         container.setAlignment(Pos.CENTER);
-        container.setSpacing(30);
+        container.setSpacing(50);
         container.setPrefWidth(getScene().getWidth());
         container.setPrefHeight(getScene().getHeight());
         root.getChildren().addAll(background, container);
@@ -39,29 +42,37 @@ public class MainMenu extends StdScene {
 
     //Sets up all the button elements: Feeding schedule, grow tools, prefs, notes ...
     private void setupControls() {
-        //Effects
+
+        HBox textBox = new HBox();
+        textBox.setAlignment(Pos.CENTER);
+        textBox.setSpacing(30);
+        textBox.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
+
+        Text labelSched = makeText("Schedule");
+
+        Text labelTools = makeText("Tools");
+
+        Text labelNotes = makeText("Notes");
+
+        Text labelLive = makeText("Live");
+
+        textBox.getChildren().addAll(labelLive, labelSched, labelTools, labelNotes);
+
+        container.getChildren().addAll(textBox);
+    }
+
+    private Text makeText(String text) {
+        //Text effect
         InnerShadow innerShadow = new InnerShadow();
         innerShadow.setOffsetX(2);
         innerShadow.setOffsetY(2);
         innerShadow.setRadius(5);
 
-        //Labels
-        Text labelSched = new Text("Schedule");
-        labelSched.setEffect(innerShadow);
-        labelSched.setFont(new Font("Arial Black", 50));
-        labelSched.setFill(Color.WHITE);
-
-        Text labelTools = new Text("Tools");
-        labelTools.setEffect(innerShadow);
-        labelTools.setFont(new Font("Arial Black", 50));
-        labelTools.setFill(Color.WHITE);
-
-        Text labelNotes = new Text("Notes");
-        labelNotes.setEffect(innerShadow);
-        labelNotes.setFont(new Font("Arial Black", 50));
-        labelNotes.setFill(Color.WHITE);
-
-        container.getChildren().addAll(labelSched, labelTools, labelNotes);
+        Text label = new Text(text);
+        label.setEffect(innerShadow);
+        label.setFont(new Font("Arial Black", 50));
+        label.setFill(Color.WHITE);
+        return label;
     }
 
 }

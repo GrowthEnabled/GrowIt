@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.Timer;
@@ -18,13 +19,14 @@ import java.util.TimerTask;
  */
 public abstract class StdScene extends Region {
 
-    HBox container = new HBox();
+    VBox container = new VBox();
     Pane root = new Pane();
     ImageView background = new ImageView();
     Image bgImg;
 
     void init() {
         background.setImage(bgImg);
+
         updateAfterResize(getScene().getWidth(), getScene().getHeight());
     }
 
